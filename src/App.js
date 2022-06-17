@@ -3,14 +3,12 @@ import React, { Component } from "react";
 class App extends Component {
     constructor() {
         super()
-        console.log(1)
         this.state = {
             monsters: [],
             searchName: ''
         }
     }
     componentDidMount() {
-        console.log(3)
         fetch('http://jsonplaceholder.typicode.com/users')
             .then(res => res.json())
             .then(res => {
@@ -33,7 +31,6 @@ class App extends Component {
 
 
     render() {
-        console.log(2)
 
         const { searchName, monsters } = this.state
         const { onSearchChange } = this
