@@ -25,22 +25,26 @@ class App extends Component {
             })
     }
 
+    onSearchChange = (e) => {
+        this.setState(() => {
+            return { searchName: e.target.value }
+        })
+    }
 
 
     render() {
         console.log(2)
 
-        let renderMonsters = this.state.monsters.filter(item => {
-            return item.name.toLocaleLowerCase().includes(this.state.searchName)
+        const { searchName, monsters } = this.state
+        const { onSearchChange } = this
+
+        let renderMonsters = monsters.filter(item => {
+            return item.name.toLocaleLowerCase().includes(searchName)
         })
         return (
             <>
                 <input className="search-box" type='search' placeholder='search monster'
-                    onChange={(e) => {
-                        this.setState(() => {
-                            return { searchName: e.target.value }
-                        })
-                    }} />
+                    onChange={onSearchChange} />
                 {renderMonsters.map(item => (
                     <h1 key={item.id}>{item.name}</h1>
                 ))}
